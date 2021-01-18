@@ -1,6 +1,7 @@
 package com.learnreactivespring.handler;
 
 import com.learnreactivespring.document.Item;
+import com.learnreactivespring.exeption.ServerException;
 import com.learnreactivespring.repository.ItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -58,5 +59,9 @@ public class ItemsHandler {
                     return itemRepository.save(itemDb);
                 })).flatMap(item -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(fromObject(item)))
                 .switchIfEmpty(ServerResponse.notFound().build());
+    }
+
+    public Mono<ServerResponse> error(ServerRequest serverRequest) {
+        throw new ServerException("Error in functional router");
     }
 }

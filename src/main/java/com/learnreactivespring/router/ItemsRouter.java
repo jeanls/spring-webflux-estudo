@@ -47,4 +47,11 @@ public class ItemsRouter {
                 .route(PUT("/v2/items")
                         .and(accept(MediaType.APPLICATION_JSON)), itemsHandler::update);
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> error(ItemsHandler itemsHandler) {
+        return RouterFunctions
+                .route(GET("/v2/items/error")
+                        .and(accept(MediaType.APPLICATION_JSON)), itemsHandler::error);
+    }
 }

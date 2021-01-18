@@ -1,6 +1,7 @@
 package com.learnreactivespring.controller.v1;
 
 import com.learnreactivespring.document.Item;
+import com.learnreactivespring.exeption.ServerException;
 import com.learnreactivespring.repository.ItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,5 +52,10 @@ public class ItemController {
                     return itemRepository.save(currentItem);
                 }).map(updated -> new ResponseEntity<>(updated, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/error")
+    public Mono<Void> handleError() {
+        return Mono.error(new ServerException("Exception Handler Error"));
     }
 }

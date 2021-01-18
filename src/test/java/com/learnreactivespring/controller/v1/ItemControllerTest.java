@@ -167,4 +167,12 @@ public class ItemControllerTest {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    public void errorTest() {
+        webTestClient.get()
+                .uri("/items/error")
+                .exchange()
+                .expectStatus().is5xxServerError();
+    }
 }
