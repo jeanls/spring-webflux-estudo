@@ -140,4 +140,12 @@ public class ItemsHandlerTest {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    public void errorTest() {
+        webTestClient.get()
+                .uri("/v2/error")
+                .exchange()
+                .expectStatus().is5xxServerError();
+    }
 }

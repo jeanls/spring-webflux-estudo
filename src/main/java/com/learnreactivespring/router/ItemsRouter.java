@@ -51,7 +51,7 @@ public class ItemsRouter {
     @Bean
     public RouterFunction<ServerResponse> error(ItemsHandler itemsHandler) {
         return RouterFunctions
-                .route(GET("/v2/items/error")
+                .route(GET("/v2/error")
                         .and(accept(MediaType.APPLICATION_JSON)), itemsHandler::error);
     }
 }
