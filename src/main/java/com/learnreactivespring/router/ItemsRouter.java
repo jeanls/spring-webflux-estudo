@@ -54,4 +54,11 @@ public class ItemsRouter {
                 .route(GET("/v2/error")
                         .and(accept(MediaType.APPLICATION_JSON)), itemsHandler::error);
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> streamRoute(ItemsHandler itemsHandler) {
+        return RouterFunctions
+                .route(GET("/v2/stream")
+                        .and(accept(MediaType.APPLICATION_JSON)), itemsHandler::stream);
+    }
 }
